@@ -66,18 +66,43 @@ public:
         cout << "El carro " << marca << " " << modelo << " frena a " 
              << velocidad << " km/h" << endl;
     }
-
-    // Metodo: mostrarInfo
-    void mostrarInfo() {
-        cout << "\n--- INFO DEL CARRO ---" << endl;
-        cout << "Marca: " << marca << endl;
-        cout << "Modelo: " << modelo << endl;
-        cout << "Placa: " << placa << endl;
-        cout << "Año: " << year << endl;
-        cout << "Velocidad actual: " << velocidad << " km/h" << endl;
-    }
 };
 
+    // Clase Estudiante
+    class Estudiante 
+    {
+        private:
+            string nombre;
+            int edad;
+            int codigo;
+            char grado;
+            float calificacion;
+            bool realizoExamen;
+        public:
+            // Constructor
+            Estudiante(string n, int e, int co, char g, float ca, bool examen)
+                : nombre(n), edad(e), codigo(co), grado(g), calificacion(ca), realizoExamen(examen) {}
+            // Metodos
+            void tomarExamen() {
+                if (!realizoExamen) {
+                    cout << nombre << " Realizo el examen." << endl;
+                    realizoExamen = true;
+                    calificacion = 0;
+                } else { 
+                    cout << nombre << " ya ha tomado el examen." << endl;
+                }   
+            }
+            void RecibirCalificacion(float nota) 
+            {
+                if (realizoExamen) {
+                    calificacion = nota;
+                    cout << nombre << " recibio una calificacion de " << calificacion << endl;
+                } else {
+                    cout << "El estudiante " << nombre << " no ha tomado el examen." << endl;
+                    calificacion=0; // Asegura que la calificación sea 0 si no ha tomado el examen
+                }
+            }
+    };
 
 int main() {
 
@@ -106,21 +131,23 @@ int main() {
 
     cout << "CARRO 1" << endl;
     Carro carro1("Tesla", "Model 3", "AAA-001", 2020);
-    carro1.mostrarInfo();
     carro1.acelerar(50);
     carro1.acelerar(30);
     carro1.frenar(25);
-    carro1.mostrarInfo();
 
     cout << "CARRO 2" << endl;
     Carro carro2("Mustang", "Cobra", "BBB-002", 1969);
-    carro2.mostrarInfo();
     carro2.acelerar(250);
     carro2.frenar(200);
-    carro2.mostrarInfo();
 
-    cout << "FIN DE PRUEBAS";
+    cout << "FIN DE PRUEBAS" << endl;
 
-    return 0;
+    //PRUEBAS DE EXAMEN 
+    cout << "PRUEBAS DE CLASE ESTUDIANTE" << endl;
+    Estudiante estudiante1("Angel", 20, 12345, 'A', 0.0, false);
+    estudiante1.tomarExamen();
+    estudiante1.RecibirCalificacion(16.5);
+    Estudiante estudiante2("Maria", 19, 67890, 'B', 0.0, false);
+    estudiante2.tomarExamen();
+    estudiante2.RecibirCalificacion(20.0); 
 }
- 
