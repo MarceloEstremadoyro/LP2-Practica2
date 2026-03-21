@@ -104,6 +104,36 @@ public:
             }
     };
 
+        // Clase Tienda 
+class Tienda {
+    private:   
+        string nombre;
+        string direccion;
+        string tipoDeTienda;
+        int stock;
+        int productosVendidos;
+    public:
+        // Constructor              
+        Tienda(string n, string d, string t, int s) 
+             : nombre(n), direccion(d), tipoDeTienda(t), stock(s), productosVendidos(0) {}
+        // Métodos
+        void agregarproducto(int cantidad) {
+            stock += cantidad;
+            cout << "Se agregaron " << cantidad << " productos a la tienda " << nombre << ". Stock actual: " << stock << endl;
+        }
+        void venderProducto(int cantidad) {
+            if (cantidad <= stock) {
+                stock -= cantidad;
+                productosVendidos += cantidad;
+                cout << "Se vendieron " << cantidad << " productos de la tienda " << nombre << ". Stock actual: " << stock << endl;
+            } else {
+                cout << "No hay suficiente stock para vender " << cantidad << " productos en la tienda " << nombre << ". Stock actual: " << stock << endl;
+            }
+        }
+};
+
+
+
 int main() {
 
     cout << "EXPERIENCIA PRACTICA 01 - POO" << endl;
@@ -150,4 +180,12 @@ int main() {
     Estudiante estudiante2("Maria", 19, 67890, 'B', 0.0, false);
     estudiante2.tomarExamen();
     estudiante2.RecibirCalificacion(20.0); 
+
+    //PRUEBAS DE TIENDA
+    cout << "PRUEBAS DE CLASE TIENDA" << endl;
+    Tienda tienda1("Cato tienda", "Calle Montesinos", "Ropa", 100);
+    tienda1.agregarproducto(50);
+    tienda1.venderProducto(20);
+    tienda1.venderProducto(150); // Intento de vender más de lo que hay en stock    
+        return 0;
 }
